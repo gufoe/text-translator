@@ -5,11 +5,11 @@ const TranslationProviderBase = Extension.imports.translation_provider_base;
 const ENGINE = "Yandex";
 
 var Translator = class Yandex extends TranslationProviderBase.TranslationProviderBase {
-  constructor() {
-    super(ENGINE + ".Translate");
-    this.engine = ENGINE;
-    this.NAME = ENGINE;
-  }
+    constructor() {
+        super(ENGINE + ".Translate");
+        this.engine = ENGINE;
+        this.NAME = ENGINE;
+    }
 };
 
 Translator.NAME = ENGINE;

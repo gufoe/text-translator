@@ -5,10 +5,10 @@ const TranslationProviderBase = Extension.imports.translation_provider_base;
 const ENGINE = "Google";
 
 var Translator = class Google extends TranslationProviderBase.TranslationProviderBase {
-  constructor() {
-    super(ENGINE + ".Translate");
-    this.engine = ENGINE;
-  }
+    constructor() {
+        super(ENGINE + ".Translate");
+        this.engine = ENGINE;
+    }
 };
 
 Translator.NAME = ENGINE;
