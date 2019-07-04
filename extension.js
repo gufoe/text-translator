@@ -350,19 +350,32 @@ const TranslatorExtension = class TranslatorExtension {
         );
     }
 
+    _most_used_bar_select_current() {
+        if (!Utils.SETTINGS.get_boolean(PrefsKeys.SHOW_MOST_USED_KEY)) return;
+
+        this._dialog.most_used.sources.select(this._current_source_lang);
+        this._dialog.most_used.targets.select(this._current_target_lang);
+    }
+
     _init_languages_chooser() {
         this._source_language_chooser = new LanguageChooser.LanguageChooser(
             "Choose source language:"
         );
-        this._source_language_chooser.connect("language-chose", () =>
-            this._on_source_language_chose()
+        this._source_language_chooser.connect(
+            "language-chose",
+            (object, language) => {
+                this._on_source_language_chose(object, language);
+            }
         );
 
         this._target_language_chooser = new LanguageChooser.LanguageChooser(
             "Choose target language:"
         );
-        this._target_language_chooser.connect("language-chose", () =>
-            this._on_target_language_chose()
+        this._target_language_chooser.connect(
+            "language-chose",
+            (object, language) => {
+                this._on_target_language_chose(object, language);
+            }
         );
     }
 

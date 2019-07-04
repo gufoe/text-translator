@@ -6,7 +6,7 @@ const MAX_LEN = 100;
 
 var GoogleTTS = class GoogleTTS {
     constructor() {
-        Gst.init(null, 0);
+        Gst.init(null);
 
         this._player = Gst.ElementFactory.make("playbin", "player");
         this._bus = this._player.get_bus();
