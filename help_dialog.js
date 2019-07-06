@@ -1,32 +1,29 @@
-const Lang = imports.lang;
 const St = imports.gi.St;
 const Main = imports.ui.main;
 const Clutter = imports.gi.Clutter;
 const ModalDialog = imports.ui.modalDialog;
 const ExtensionUtils = imports.misc.extensionUtils;
+const GObject = imports.gi.GObject;
 
 const Me = ExtensionUtils.getCurrentExtension();
 const Utils = Me.imports.utils;
 const PrefsKeys = Me.imports.prefs_keys;
 
-const HelpDialog = new Lang.Class({
-    Name: 'HelpDialog',
-    Extends: ModalDialog.ModalDialog,
+var HelpDialog = class HelpDialog extends ModalDialog.ModalDialog {
+    constructor() {
+        super();
 
-    _init: function() {
-        this.parent();
-
-        this._dialogLayout = 
+        this._dialogLayout =
             typeof this.dialogLayout === "undefined"
-            ? this._dialogLayout
-            : this.dialogLayout;
-        this._dialogLayout.connect('key-press-event', Lang.bind(this,
-            this._on_key_press_event
-        ));
-        this._dialogLayout.set_style_class_name('translator-help-box');
+                ? this._dialogLayout
+                : this.dialogLayout;
+        this._dialogLayout.connect("key-press-event", (o, e) =>
+            this._on_key_press_event(o, e)
+        );
+        this._dialogLayout.set_style_class_name("translator-help-box");
 
         this._label = new St.Label({
-            style_class: 'translator-help-text'
+            style_class: "translator-help-text"
         });
         this._label.clutter_text.set_line_wrap(true);
 
@@ -58,55 +55,63 @@ const HelpDialog = new Lang.Class({
             y_fill: false,
             y_align: St.Align.END
         });
-    },
+    }
 
-    _on_key_press_event: function(object, event) {
+    _on_key_press_event(object, event) {
         let symbol = event.get_key_symbol();
 
-        if(symbol == Clutter.Escape) {
+        if (symbol == Clutter.Escape) {
             this.close();
         }
-    },
+    }
 
-    _get_close_button: function() {
+    _get_close_button() {
         let icon = new St.Icon({
             icon_name: Utils.ICONS.close,
             icon_size: 20,
-            style: 'color: grey;'
+            style: "color: grey;"
         });
 
         let button = new St.Button({
             reactive: true
         });
-        button.connect('clicked', Lang.bind(this, function() {
+        button.connect("clicked", () => {
             this.close();
-        }));
+        });
         button.add_actor(icon);
 
         return button;
-    },
+    }
 
-    _resize: function() {
-        let width_percents = Utils.SETTINGS.get_int(PrefsKeys.WIDTH_PERCENTS_KEY);
-        let height_percents = Utils.SETTINGS.get_int(PrefsKeys.HEIGHT_PERCENTS_KEY);
+    _resize() {
+        let width_percents = Utils.SETTINGS.get_int(
+            PrefsKeys.WIDTH_PERCENTS_KEY
+        );
+        let height_percents = Utils.SETTINGS.get_int(
+            PrefsKeys.HEIGHT_PERCENTS_KEY
+        );
         let primary = Main.layoutManager.primaryMonitor;
 
-        let translator_width = Math.round(primary.width / 100 * width_percents);
-        let translator_height = Math.round(primary.height / 100 * height_percents);
+        let translator_width = Math.round(
+            (primary.width / 100) * width_percents
+        );
+        let translator_height = Math.round(
+            (primary.height / 100) * height_percents
+        );
 
         let help_width = Math.round(translator_width * 0.9);
         let help_height = Math.round(translator_height * 0.9);
         this._dialogLayout.set_width(help_width);
         this._dialogLayout.set_height(help_height);
-    },
+    }
 
-    close: function() {
-        this.parent();
+    close() {
+        super.close();
         this.destroy();
-    },
+    }
 
-    open: function() {
-        this._resize()
-        this.parent()
-    },
-});
+    open() {
+        this._resize();
+        super.open();
+    }
+};
