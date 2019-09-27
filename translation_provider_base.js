@@ -269,7 +269,10 @@ var TranslationProviderBase = class TranslationProviderBase {
             "--show-prompt-message",
             "n",
             "--no-bidi",
-            source_lang + ":" + target_lang,
+            "-s",
+            source_lang,
+            "-t",
+            target_lang,
             text
         ];
 
