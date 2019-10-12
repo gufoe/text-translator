@@ -281,6 +281,8 @@ const TranslatorsPopup = class TranslatorsPopup extends PopupMenu.PopupMenu {
 const TranslatorExtension = class TranslatorExtension {
     constructor() {
         log("Translator Extension");
+        this._current_source_lang = ''
+        this._current_target_lang = ''
         this._dialog = new TranslatorDialog.TranslatorDialog(this);
         this._dialog.source.clutter_text.connect("text-changed", () => {
             let enable_instant_translation = Utils.SETTINGS.get_boolean(
@@ -363,8 +365,8 @@ const TranslatorExtension = class TranslatorExtension {
         );
         this._source_language_chooser.connect(
             "language-chose",
-            (object, language) => {
-                this._on_source_language_chose(object, language);
+            (object, code, name) => {
+                this._on_source_language_chose(object, { code, name });
             }
         );
 
@@ -373,8 +375,8 @@ const TranslatorExtension = class TranslatorExtension {
         );
         this._target_language_chooser.connect(
             "language-chose",
-            (object, language) => {
-                this._on_target_language_chose(object, language);
+            (object, code, name) => {
+                this._on_target_language_chose(object, { code, name });
             }
         );
     }
@@ -597,8 +599,7 @@ const TranslatorExtension = class TranslatorExtension {
             ),
             "Choose source language",
             button_params,
-            () =>
-                function() {
+            () => {
                     this._source_language_chooser.open();
                     this._source_language_chooser.set_languages(
                         this._translators_manager.current.get_languages()

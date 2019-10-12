@@ -276,9 +276,9 @@ const ListenButton = class ListenButton {
 };
 
 log("TranslatorDialog");
-var TranslatorDialog = class TranslatorDialog extends ModalDialog.ModalDialog {
-    constructor(text_translator) {
-        super({
+var TranslatorDialog = GObject.registerClass({}, class TranslatorDialog extends ModalDialog.ModalDialog {
+    _init(text_translator) {
+        super._init({
             shellReactive: false,
             destroyOnClose: false
         });
@@ -324,6 +324,7 @@ var TranslatorDialog = class TranslatorDialog extends ModalDialog.ModalDialog {
 
         this._statusbar = new StatusBar.StatusBar();
         this._statusbar.actor.x_align = St.Align.END;
+        this._statusbar.actor.set_style('height: 30px');
         this._most_used_bar = false;
 
         this._chars_counter = new CharsCounter.CharsCounter();
@@ -611,7 +612,7 @@ var TranslatorDialog = class TranslatorDialog extends ModalDialog.ModalDialog {
     get google_tts() {
         return this._google_tts;
     }
-};
+});
 
 log("registerClass");
 // var TranslatorDialog = GObject.registerClass(TD);

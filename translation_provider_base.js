@@ -276,6 +276,8 @@ var TranslationProviderBase = class TranslationProviderBase {
             text
         ];
 
+        log('translating: ' + command.join(' '))
+
         this._exec(command, (out, err) => {
             callback(
                 err

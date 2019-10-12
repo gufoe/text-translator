@@ -9,9 +9,9 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Utils = Me.imports.utils;
 const PrefsKeys = Me.imports.prefs_keys;
 
-var HelpDialog = class HelpDialog extends ModalDialog.ModalDialog {
-    constructor() {
-        super();
+var HelpDialog = GObject.registerClass({}, class HelpDialog extends ModalDialog.ModalDialog {
+    _init() {
+        super._init();
 
         this._dialogLayout =
             typeof this.dialogLayout === "undefined"
@@ -114,4 +114,4 @@ var HelpDialog = class HelpDialog extends ModalDialog.ModalDialog {
         this._resize();
         super.open();
     }
-};
+});

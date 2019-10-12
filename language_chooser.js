@@ -12,9 +12,19 @@ const PrefsKeys = Me.imports.prefs_keys;
 
 const COLUMNS = 4;
 
-var LanguageChooser = class LanguageChooser extends ModalDialog.ModalDialog {
-    constructor(title, languages) {
-        super({ destroyOnClose: false });
+var LanguageChooser = GObject.registerClass({
+    Signals: {
+        'language-chose': { param_types: [ String, String ] },
+    },
+}, class LanguageChooser extends ModalDialog.ModalDialog {
+
+    static get Signals() {
+        return {
+            'language-chose': { param_types: [ String, String ] },
+        };
+    }
+    _init(title, languages) {
+        super._init({ destroyOnClose: false });
 
         this._dialogLayout =
             typeof this.dialogLayout === "undefined"
@@ -170,10 +180,7 @@ var LanguageChooser = class LanguageChooser extends ModalDialog.ModalDialog {
             y_expand: false
         });
         button.connect("clicked", () => {
-            this.emit("language-chose", {
-                code: lang_code,
-                name: lang_name
-            });
+            this.emit("language-chose", lang_code, lang_name)
         });
         button.lang_code = lang_code;
         button.lang_name = lang_name;
@@ -266,4 +273,4 @@ var LanguageChooser = class LanguageChooser extends ModalDialog.ModalDialog {
         this._resize();
         super.open();
     }
-};
+});

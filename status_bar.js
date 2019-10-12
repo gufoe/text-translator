@@ -148,7 +148,7 @@ var StatusBar = class StatusBar {
             opacity: 0,
             transition: "easeOutQuad",
             onComplete: () => {
-                this.actor.hide();
+                // this.actor.hide();
             }
         });
     }
@@ -181,7 +181,7 @@ var StatusBar = class StatusBar {
     }
 
     clear() {
-        this.actor.hide();
+        // this.actor.hide();
         this._messages = {};
     }
 
