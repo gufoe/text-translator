@@ -469,7 +469,7 @@ var TranslatorDialog = GObject.registerClass({}, class TranslatorDialog extends 
         );
 
         let text_box_width = Math.round(
-            box_width / 2 - 10 // The margin of the translator box
+            box_width / 2 - 45 // The margin of the translator box
         );
         let text_box_height =
             box_height -
