@@ -403,7 +403,8 @@ const TranslatorExtension = class TranslatorExtension {
         let cyrillic_control = 8196;
         let cyrillic_shift = 8192;
 
-        if (symbol == Clutter.Escape) {
+        if (symbol == Clutter.Escape ||
+           code == 9) {
             this.close();
         }
         // ctrl+shift+c - copy translated text to clipboard
