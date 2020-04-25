@@ -15,6 +15,11 @@
     /*padding: 30px;*/
     /*border-radius: 3px;*/
 }
+
+.translator-target-text-box {
+padding-right: 35px;
+}
+
 /*.translator-source-text-box { margin-right: 10px }
 .translator-target-text-box { margin-left: 10px }*/
 
