@@ -1,3 +1,8 @@
+## Looking for maintainer
+Hi all, I'm happy to maintain this repository but I cannot work on it much as I am not using the Gnome desktop anymore.
+I did not write this thing myself, I just kinda hacked it so it could still work after the creator abandoned it.
+If you want to manage this repo, open an issue :)
+
 ## Text Translator
 
 Translation of the text by different translators (currently [Google.Translate](https://translate.google.com), [Yandex.Translate](https://translate.yandex.com/)).
