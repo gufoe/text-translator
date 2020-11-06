@@ -1,7 +1,7 @@
 const St = imports.gi.St;
 const Gio = imports.gi.Gio;
 const Animation = imports.ui.animation;
-const Tweener = imports.ui.tweener;
+const Tweener = imports.tweener.tweener;
 const Mainloop = imports.mainloop;
 const Params = imports.misc.params;
 const ExtensionUtils = imports.misc.extensionUtils;
@@ -85,7 +85,7 @@ var StatusBar = class StatusBar {
         );
         this._spinner = new Animation.AnimatedIcon(spinner_icon, 16);
 
-        this.actor.add(this._spinner.actor);
+        this.actor.add(this._spinner);
         this.actor.add(this._message_label);
 
         this._messages = {};

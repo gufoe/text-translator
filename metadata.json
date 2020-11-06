@@ -3,8 +3,8 @@
   "description": "** Needs the package translate-shell **\nTranslation of the text by different translators (currently Google.Translate, Yandex.Translate).\nShortcuts:\nSuper+T - open translator dialog.\nSuper+Shift+T - open translator dialog and translate text from clipboard.\nSuper+Alt+T - open translator dialog and translate from primary selection.\nCtrl+Enter+ - Translate text.\nCtrl+Shift+C - copy translated text to clipboard.\nCtrl+S - swap languages.\nCtrl+D - reset languages to default\nTab+ - toggle transliteration of result text.",
   "name": "Text Translator",
   "settings-schema": "org.gnome.shell.extensions.text-translator",
-  "shell-version": ["3.36"],
+  "shell-version": ["3.38"],
   "url": "https://github.com/gufoe/text-translator",
   "uuid": "text_translator@awamper.gmail.com",
-  "version": 36
+  "version": 38
 }

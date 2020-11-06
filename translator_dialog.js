@@ -40,11 +40,7 @@ const EntryBase = class EntryBase {
         this.actor.connect("button-press-event", () => {
             this._clutter_text.grab_key_focus();
         });
-        this.actor.add(this.scroll, {
-            x_fill: true,
-            y_fill: true,
-            expand: true
-        });
+        this.actor.add_child(this.scroll);
 
         this._entry = new St.Entry({
             style_class: this.params.entry_style
@@ -74,10 +70,7 @@ const EntryBase = class EntryBase {
         this._box = new St.BoxLayout({
             vertical: true
         });
-        this._box.add(this._entry, {
-            y_align: St.Align.START,
-            y_fill: true
-        });
+        this._box.add_child(this._entry);
 
         this.scroll.add_actor(this._box);
     }
@@ -249,8 +242,6 @@ const ListenButton = class ListenButton {
             style_class: "listen-button",
             x_expand: false,
             y_expand: false,
-            x_fill: false,
-            y_fill: false,
             x_align: St.Align.START,
             y_align: St.Align.MIDDLE
         });
