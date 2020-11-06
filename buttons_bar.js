@@ -1,6 +1,6 @@
 const St = imports.gi.St;
 const Params = imports.misc.params;
-const Tweener = imports.ui.tweener;
+const Tweener = imports.tweener.tweener;
 const ExtensionUtils = imports.misc.extensionUtils;
 
 const Me = ExtensionUtils.getCurrentExtension();
@@ -50,20 +50,14 @@ var ButtonsBarButton = class ButtonsBarButton {
                 style_class: this.params.icon_style
             });
 
-            this._button_content.add(this._icon, {
-                x_fill: false,
-                x_align: St.Align.START
-            });
+            this._button_content.add_child(this._icon);
         }
 
         if (!Utils.is_blank(this._label_text)) {
             this._label = new St.Label();
             this._label.clutter_text.set_markup(this._label_text);
 
-            this._button_content.add(this._label, {
-                x_fill: false,
-                y_align: St.Align.MIDDLE
-            });
+            this._button_content.add_child(this._label);
 
             if (this._icon) {
                 this._label.visible = false;
@@ -222,10 +216,7 @@ var ButtonsBar = class ButtonsBar {
 
     add_button(button) {
         this._buttons.push(button);
-        this.actor.add(button.actor, {
-            x_fill: false,
-            x_align: St.Align.START
-        });
+        this.actor.add_child(button.actor);
     }
 
     clear() {

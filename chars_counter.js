@@ -1,5 +1,5 @@
 const St = imports.gi.St;
-const Tweener = imports.ui.tweener;
+const Tweener = imports.tweener.tweener;
 
 var CharsCounter = class CharsCounter {
     constructor() {

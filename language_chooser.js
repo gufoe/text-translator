@@ -155,8 +155,6 @@ var LanguageChooser = GObject.registerClass({
             reactive: true,
             x_expand: false,
             y_expand: false,
-            x_fill: false,
-            y_fill: false,
             x_align: St.Align.END,
             y_align: St.Align.MIDDLE
         });
